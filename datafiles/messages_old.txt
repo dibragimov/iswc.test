@@ -1,0 +1,224 @@
+############
+DateTime: 20150416_074716; message Connection timed out: connect
+############
+DateTime: 20150416_074737; message Connection timed out: connect
+############
+DateTime: 20150416_074758; message Connection timed out: connect
+############
+DateTime: 20150416_074819; message Connection timed out: connect
+############
+DateTime: 20150416_074840; message Connection timed out: connect
+############
+DateTime: 20150416_074901; message Connection timed out: connect
+############
+DateTime: 20150416_074922; message Connection timed out: connect
+############
+DateTime: 20150416_075009; message MatView Load Duration 120834410, 120.83441 ms
+############
+DateTime: 20150416_075009; message Query ######### SSB Q1.1 (1) rewriting duration 7836006, 7.836006 ms
+############
+DateTime: 20150416_075009; message Query ######### SSB Q1.2 (2) rewriting duration 4099952, 4.099952 ms
+############
+DateTime: 20150416_075009; message Query ######### SSB Q1.3 (3) rewriting duration 5275032, 5.275032 ms
+############
+DateTime: 20150416_075009; message Query ######### SSB Q2.1 (4) rewriting duration 13686604, 13.686604 ms
+############
+DateTime: 20150416_075021; message MatView Load Duration 129394364, 129.394364 ms
+############
+DateTime: 20150416_075021; message Query ######### SSB Q1.1 (1) rewriting duration 7759035, 7.759035 ms
+############
+DateTime: 20150416_075021; message Query ######### SSB Q1.2 (2) rewriting duration 4169225, 4.169225 ms
+############
+DateTime: 20150416_075021; message Query ######### SSB Q1.3 (3) rewriting duration 4133306, 4.133306 ms
+############
+DateTime: 20150416_075021; message Query ######### SSB Q2.1 (4) rewriting duration 12498268, 12.498268 ms
+############
+DateTime: 20150416_075031; message Connection timed out: connect
+############
+DateTime: 20150416_075031; message Query #########  SSB Q2.2 (5) rewriting duration 21750527, 21.750527 ms
+############
+DateTime: 20150416_075042; message Connection timed out: connect
+############
+DateTime: 20150416_075042; message Query #########  SSB Q2.2 (5) rewriting duration 23930070, 23.93007 ms
+############
+DateTime: 20150416_075052; message Connection timed out: connect
+############
+DateTime: 20150416_075052; message Query #########  SSB Q2.3 (6) rewriting duration 16832980, 16.83298 ms
+############
+DateTime: 20150416_075103; message Connection timed out: connect
+############
+DateTime: 20150416_075103; message Query #########  SSB Q2.3 (6) rewriting duration 21354130, 21.35413 ms
+############
+DateTime: 20150416_075113; message Connection timed out: connect
+############
+DateTime: 20150416_075113; message Query ######### SSB Q3.1 (7) rewriting duration 20603670, 20.60367 ms
+############
+DateTime: 20150416_075124; message Connection timed out: connect
+############
+DateTime: 20150416_075124; message Query ######### SSB Q3.1 (7) rewriting duration 24235813, 24.235813 ms
+############
+DateTime: 20150416_075134; message Connection timed out: connect
+############
+DateTime: 20150416_075134; message Query ########### SSB Q3.2 (8) rewriting duration 17728401, 17.728401 ms
+############
+DateTime: 20150416_075145; message Connection timed out: connect
+############
+DateTime: 20150416_075145; message Query ########### SSB Q3.2 (8) rewriting duration 17052772, 17.052772 ms
+############
+DateTime: 20150416_075155; message Connection timed out: connect
+############
+DateTime: 20150416_075155; message Query ########### SSB Q3.3 (9) rewriting duration 18167987, 18.167987 ms
+############
+DateTime: 20150416_075206; message Connection timed out: connect
+############
+DateTime: 20150416_075206; message Query ########### SSB Q3.3 (9) rewriting duration 17409829, 17.409829 ms
+############
+DateTime: 20150416_075216; message Connection timed out: connect
+############
+DateTime: 20150416_075216; message Query ########### SSB Q3.4 (10) rewriting duration 13052454, 13.052454 ms
+############
+DateTime: 20150416_075216; message Query ########### SSB Q4.1 (11) rewriting duration 8831488, 8.831488 ms
+############
+DateTime: 20150416_075216; message Query ############# SSB Q4.2 (12) rewriting duration 12846772, 12.846772 ms
+############
+DateTime: 20150416_075227; message Connection timed out: connect
+############
+DateTime: 20150416_075227; message Query ########### SSB Q3.4 (10) rewriting duration 12413600, 12.4136 ms
+############
+DateTime: 20150416_075227; message Query ########### SSB Q4.1 (11) rewriting duration 9128679, 9.128679 ms
+############
+DateTime: 20150416_075227; message Query ############# SSB Q4.2 (12) rewriting duration 13010548, 13.010548 ms
+############
+DateTime: 20150416_075237; message Connection timed out: connect
+############
+DateTime: 20150416_075237; message Query ########### SSB Q4.3 (13) rewriting duration 24224268, 24.224268 ms
+############
+DateTime: 20150416_075248; message Connection timed out: connect
+############
+DateTime: 20150416_075248; message Query ########### SSB Q4.3 (13) rewriting duration 11568210, 11.56821 ms
+############
+DateTime: 20150416_075513; message MatView Load Duration 157670263, 157.670263 ms
+############
+DateTime: 20150416_075513; message Query ######### SSB Q1.1 (1) rewriting duration 10384578, 10.384578 ms
+############
+DateTime: 20150416_075513; message Query ######### SSB Q1.2 (2) rewriting duration 4298364, 4.298364 ms
+############
+DateTime: 20150416_075513; message Query ######### SSB Q1.3 (3) rewriting duration 4080282, 4.080282 ms
+############
+DateTime: 20150416_075514; message Query ######### SSB Q2.1 (4) rewriting duration 15892659, 15.892659 ms
+############
+DateTime: 20150416_075535; message Connection timed out: connect
+############
+DateTime: 20150416_075535; message Query #########  SSB Q2.2 (5) rewriting duration 25724761, 25.724761 ms
+############
+DateTime: 20150416_075556; message Connection timed out: connect
+############
+DateTime: 20150416_075556; message Query #########  SSB Q2.3 (6) rewriting duration 21084306, 21.084306 ms
+############
+DateTime: 20150416_075617; message Connection timed out: connect
+############
+DateTime: 20150416_075617; message Query ######### SSB Q3.1 (7) rewriting duration 19993466, 19.993466 ms
+############
+DateTime: 20150416_075638; message Connection timed out: connect
+############
+DateTime: 20150416_075638; message Query ########### SSB Q3.2 (8) rewriting duration 18776907, 18.776907 ms
+############
+DateTime: 20150416_075659; message Connection timed out: connect
+############
+DateTime: 20150416_075659; message Query ########### SSB Q3.3 (9) rewriting duration 26894709, 26.894709 ms
+############
+DateTime: 20150416_075720; message Connection timed out: connect
+############
+DateTime: 20150416_075720; message Query ########### SSB Q3.4 (10) rewriting duration 14389600, 14.3896 ms
+############
+DateTime: 20150416_075720; message Query ########### SSB Q4.1 (11) rewriting duration 8001491, 8.001491 ms
+############
+DateTime: 20150416_075720; message Query ############# SSB Q4.2 (12) rewriting duration 8216153, 8.216153 ms
+############
+DateTime: 20150416_075741; message Connection timed out: connect
+############
+DateTime: 20150416_075741; message Query ########### SSB Q4.3 (13) rewriting duration 23751756, 23.751756 ms
+############
+DateTime: 20150416_121916; message MatView Load Duration 152479898, 152.479898 ms
+############
+DateTime: 20150416_121916; message Query ######### SSB Q1.1 (1) rewriting duration 7692327, 7.692327 ms
+############
+DateTime: 20150416_121916; message Query ######### SSB Q1.2 (2) rewriting duration 3621454, 3.621454 ms
+############
+DateTime: 20150416_121916; message Query ######### SSB Q1.3 (3) rewriting duration 3433304, 3.433304 ms
+############
+DateTime: 20150416_121916; message Query ######### SSB Q2.1 (4) rewriting duration 11214147, 11.214147 ms
+############
+DateTime: 20150416_121918; message Query ######### SSB Q2.1 (4) execution duration 1960074216, 1960.074216 ms, result size 280
+############
+DateTime: 20150416_121918; message Query #########  SSB Q2.2 (5) rewriting duration 7995932, 7.995932 ms
+############
+DateTime: 20150416_121918; message Query #########  SSB Q2.2 (5) execution duration 574745870, 574.74587 ms, result size 56
+############
+DateTime: 20150416_121918; message Query #########  SSB Q2.3 (6) rewriting duration 10464541, 10.464541 ms
+############
+DateTime: 20150416_121919; message Query #########  SSB Q2.3 (6) execution duration 364468109, 364.468109 ms, result size 7
+############
+DateTime: 20150416_121919; message Query ######### SSB Q3.1 (7) rewriting duration 18725594, 18.725594 ms
+############
+DateTime: 20150416_121920; message Query ######### SSB Q3.1 (7) execution duration 1346484852, 1346.484852 ms, result size 150
+############
+DateTime: 20150416_121920; message Query ########### SSB Q3.2 (8) rewriting duration 19371717, 19.371717 ms
+############
+DateTime: 20150416_121923; message Query ########### SSB Q3.2 (8) execution duration 2646618181, 2646.618181 ms, result size 599
+############
+DateTime: 20150416_121923; message Query ########### SSB Q3.3 (9) rewriting duration 13707130, 13.70713 ms
+############
+DateTime: 20150416_121923; message Query ########### SSB Q3.3 (9) execution duration 461477642, 461.477642 ms, result size 24
+############
+DateTime: 20150416_121923; message Query ########### SSB Q3.4 (10) rewriting duration 9695266, 9.695266 ms
+############
+DateTime: 20150416_121923; message Query ########### SSB Q4.1 (11) rewriting duration 4993662, 4.993662 ms
+############
+DateTime: 20150416_121923; message Query ############# SSB Q4.2 (12) rewriting duration 9700397, 9.700397 ms
+############
+DateTime: 20150416_121925; message Query ############# SSB Q4.2 (12) execution duration 1426507891, 1426.507891 ms, result size 100
+############
+DateTime: 20150416_121925; message Query ########### SSB Q4.3 (13) rewriting duration 6273936, 6.273936 ms
+############
+DateTime: 20150416_132820; message MatView Load Duration 167847448, 167.847448 ms
+############
+DateTime: 20150416_132820; message Query ######### SSB Q1.1 (1) rewriting duration 8900334, 8.900334 ms
+############
+DateTime: 20150416_132820; message Query ######### SSB Q1.2 (2) rewriting duration 3652669, 3.652669 ms
+############
+DateTime: 20150416_132820; message Query ######### SSB Q1.3 (3) rewriting duration 4499342, 4.499342 ms
+############
+DateTime: 20150416_132820; message Query ######### SSB Q2.1 (4) rewriting duration 12397779, 12.397779 ms
+############
+DateTime: 20150416_132822; message Query ######### SSB Q2.1 (4) execution duration 2148159725, 2148.159725 ms, result size 280
+############
+DateTime: 20150416_132822; message Query #########  SSB Q2.2 (5) rewriting duration 11709323, 11.709323 ms
+############
+DateTime: 20150416_132823; message Query #########  SSB Q2.2 (5) execution duration 700981030, 700.98103 ms, result size 56
+############
+DateTime: 20150416_132823; message Query #########  SSB Q2.3 (6) rewriting duration 25350172, 25.350172 ms
+############
+DateTime: 20150416_132823; message Query #########  SSB Q2.3 (6) execution duration 376234732, 376.234732 ms, result size 7
+############
+DateTime: 20150416_132823; message Query ######### SSB Q3.1 (7) rewriting duration 16016239, 16.016239 ms
+############
+DateTime: 20150416_132824; message Query ######### SSB Q3.1 (7) execution duration 1317548717, 1317.548717 ms, result size 150
+############
+DateTime: 20150416_132824; message Query ########### SSB Q3.2 (8) rewriting duration 6838384, 6.838384 ms
+############
+DateTime: 20150416_132827; message Query ########### SSB Q3.2 (8) execution duration 2735373502, 2735.373502 ms, result size 599
+############
+DateTime: 20150416_132827; message Query ########### SSB Q3.3 (9) rewriting duration 12042433, 12.042433 ms
+############
+DateTime: 20150416_132828; message Query ########### SSB Q3.3 (9) execution duration 455579578, 455.579578 ms, result size 24
+############
+DateTime: 20150416_132828; message Query ########### SSB Q3.4 (10) rewriting duration 12787334, 12.787334 ms
+############
+DateTime: 20150416_132828; message Query ########### SSB Q4.1 (11) rewriting duration 7951888, 7.951888 ms
+############
+DateTime: 20150416_132828; message Query ############# SSB Q4.2 (12) rewriting duration 6742172, 6.742172 ms
+############
+DateTime: 20150416_132829; message Query ############# SSB Q4.2 (12) execution duration 1482937820, 1482.93782 ms, result size 100
+############
+DateTime: 20150416_132829; message Query ########### SSB Q4.3 (13) rewriting duration 10529539, 10.529539 ms

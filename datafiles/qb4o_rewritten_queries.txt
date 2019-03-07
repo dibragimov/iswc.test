@@ -1,0 +1,286 @@
+######### SSB Q2.1;4
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT 
+ (SUM(?sum_rev) AS ?lo_revenue) ?d_year ?brandname  
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+FROM NAMED <http://view4.ssb1.org> 
+WHERE { 
+GRAPH <http://view4.ssb1.org> { 
+?mv_id <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#Observation> .
+?mv_id <http://purl.org/linked-data/cube#dataSet> <http://ssb.org/ssb-inst#dataset-aggview_4> .
+?mv_id <http://ssb.org/ssb#Part_Brand> ?brand .
+?mv_id <http://ssb.org/ssb#OrderDate_Year> ?year .
+?mv_id <http://ssb.org/ssb#Supplier_Region> ?s_region .
+?mv_id <http://ssb.org/ssb#Revenue> ?sum_rev .
+ }
+?year <http://ssb.org/ssb#Date_Year> ?d_year . 
+?s_region <http://ssb.org/ssb#Region_Name> ?s_region_name . 
+?category <http://ssb.org/ssb#Category_Name> ?category_name . 
+?brand <http://ssb.org/ssb#Brand_Name> ?brandname . 
+?category <http://purl.org/qb4olap/cubes#inLevel> <http://ssb.org/ssb#Category> . 
+?brand <http://www.w3.org/2004/02/skos/core#broader> ?category . 
+
+ FILTER(?category_name = "MFGR_12")
+ FILTER(?s_region_name = "AMERICA")
+}
+GROUP BY ?d_year ?brandname 
+ORDER BY ?d_year ?brandname
+
+#########  SSB Q2.2;5
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT 
+ (SUM(?sum_rev) AS ?lo_revenue) ?d_year ?brandname  
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+FROM NAMED <http://view4.ssb1.org> 
+WHERE { 
+GRAPH <http://view4.ssb1.org> { 
+?mv_id <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#Observation> .
+?mv_id <http://purl.org/linked-data/cube#dataSet> <http://ssb.org/ssb-inst#dataset-aggview_4> .
+?mv_id <http://ssb.org/ssb#Part_Brand> ?brand .
+?mv_id <http://ssb.org/ssb#OrderDate_Year> ?year .
+?mv_id <http://ssb.org/ssb#Supplier_Region> ?s_region .
+?mv_id <http://ssb.org/ssb#Revenue> ?sum_rev .
+ }
+?year <http://ssb.org/ssb#Date_Year> ?d_year . 
+?s_region <http://ssb.org/ssb#Region_Name> ?s_region_name . 
+?brand <http://ssb.org/ssb#Brand_Name> ?brandname . 
+
+ FILTER(?s_region_name = "ASIA")
+ FILTER((?brandname >= "MFGR_2221" && ?brandname <= "MFGR_2228"))
+}
+GROUP BY ?d_year ?brandname 
+ORDER BY ?d_year ?brandname
+
+#########  SSB Q2.3;6
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT 
+ (SUM(?sum_rev) AS ?lo_revenue) ?d_year ?brandname  
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+FROM NAMED <http://view4.ssb1.org> 
+WHERE { 
+GRAPH <http://view4.ssb1.org> { 
+?mv_id <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#Observation> .
+?mv_id <http://purl.org/linked-data/cube#dataSet> <http://ssb.org/ssb-inst#dataset-aggview_4> .
+?mv_id <http://ssb.org/ssb#Part_Brand> ?brand .
+?mv_id <http://ssb.org/ssb#OrderDate_Year> ?year .
+?mv_id <http://ssb.org/ssb#Supplier_Region> ?s_region .
+?mv_id <http://ssb.org/ssb#Revenue> ?sum_rev .
+ }
+?year <http://ssb.org/ssb#Date_Year> ?d_year . 
+?s_region <http://ssb.org/ssb#Region_Name> ?s_region_name . 
+?brand <http://ssb.org/ssb#Brand_Name> ?brandname . 
+
+ FILTER(?s_region_name = "EUROPE")
+ FILTER(?brandname = "MFGR_2239")
+}
+GROUP BY ?d_year ?brandname 
+ORDER BY ?d_year ?brandname
+		
+######### SSB Q3.1;7
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT 
+ ?c_nationname ?s_nationname ?d_year (SUM(?sum_rev) AS ?lo_revenue)  
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+FROM NAMED <http://view1.ssb1.org> 
+WHERE { 
+GRAPH <http://view1.ssb1.org> { 
+?mv_id <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#Observation> .
+?mv_id <http://purl.org/linked-data/cube#dataSet> <http://ssb.org/ssb-inst#dataset-aggview_1> .
+?mv_id <http://ssb.org/ssb#OrderDate_Month> ?month .
+?mv_id <http://ssb.org/ssb#Customer_Nation> ?c_nation .
+?mv_id <http://ssb.org/ssb#Supplier_Nation> ?s_nation .
+?mv_id <http://ssb.org/ssb#Revenue> ?sum_rev .
+ }
+?year <http://ssb.org/ssb#Date_Year> ?d_year . 
+?year <http://purl.org/qb4olap/cubes#inLevel> <http://ssb.org/ssb#Year> . 
+?month <http://www.w3.org/2004/02/skos/core#broader> ?year . 
+?s_region <http://ssb.org/ssb#Region_Name> ?s_region_name . 
+?s_nation <http://ssb.org/ssb#Nation_Name> ?s_nationname . 
+?s_region <http://purl.org/qb4olap/cubes#inLevel> <http://ssb.org/ssb#Region> . 
+?s_nation <http://www.w3.org/2004/02/skos/core#broader> ?s_region . 
+?c_region <http://ssb.org/ssb#Region_Name> ?c_region_name . 
+?c_region <http://purl.org/qb4olap/cubes#inLevel> <http://ssb.org/ssb#Region> . 
+?c_nation <http://www.w3.org/2004/02/skos/core#broader> ?c_region . 
+?c_nation <http://ssb.org/ssb#Nation_Name> ?c_nationname . 
+
+ FILTER(?c_region_name = "ASIA")
+ FILTER(?s_region_name = "ASIA")
+ FILTER((?d_year >= 1992 && ?d_year <= 1997))
+}
+GROUP BY ?c_nationname ?s_nationname ?d_year 
+ORDER BY ASC(?d_year) DESC(?lo_revenue)
+	
+########### SSB Q3.2;8
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT 
+ ?c_cityname ?s_cityname ?d_year (SUM(?sum_rev) AS ?lo_revenue)  
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+FROM NAMED <http://view2.ssb1.org> 
+WHERE { 
+GRAPH <http://view2.ssb1.org> { 
+?mv_id <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#Observation> .
+?mv_id <http://purl.org/linked-data/cube#dataSet> <http://ssb.org/ssb-inst#dataset-aggview_2> .
+?mv_id <http://ssb.org/ssb#OrderDate_Year> ?year .
+?mv_id <http://ssb.org/ssb#Customer_City> ?c_city .
+?mv_id <http://ssb.org/ssb#Supplier_City> ?s_city .
+?mv_id <http://ssb.org/ssb#Revenue> ?sum_rev .
+ }
+?year <http://ssb.org/ssb#Date_Year> ?d_year . 
+?s_city <http://ssb.org/ssb#City_Name> ?s_cityname . 
+?s_nation <http://ssb.org/ssb#Nation_Name> ?s_nation_name . 
+?s_nation <http://purl.org/qb4olap/cubes#inLevel> <http://ssb.org/ssb#Nation> . 
+?s_city <http://www.w3.org/2004/02/skos/core#broader> ?s_nation . 
+?c_city <http://ssb.org/ssb#City_Name> ?c_cityname . 
+?c_nation <http://ssb.org/ssb#Nation_Name> ?c_nation_name . 
+?c_nation <http://purl.org/qb4olap/cubes#inLevel> <http://ssb.org/ssb#Nation> . 
+?c_city <http://www.w3.org/2004/02/skos/core#broader> ?c_nation . 
+
+ FILTER(?c_nation_name = "UNITEDSTATES")
+ FILTER(?s_nation_name = "UNITEDSTATES")
+ FILTER((?d_year >= 1992 && ?d_year <= 1997))
+}
+GROUP BY ?c_cityname ?s_cityname ?d_year 
+ORDER BY ASC(?d_year) DESC(?lo_revenue)
+		
+########### SSB Q3.3;9
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT 
+ ?c_cityname ?s_cityname ?d_year (SUM(?sum_rev) AS ?lo_revenue)  
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+FROM NAMED <http://view2.ssb1.org> 
+WHERE { 
+GRAPH <http://view2.ssb1.org> { 
+?mv_id <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#Observation> .
+?mv_id <http://purl.org/linked-data/cube#dataSet> <http://ssb.org/ssb-inst#dataset-aggview_2> .
+?mv_id <http://ssb.org/ssb#OrderDate_Year> ?year .
+?mv_id <http://ssb.org/ssb#Customer_City> ?c_city .
+?mv_id <http://ssb.org/ssb#Supplier_City> ?s_city .
+?mv_id <http://ssb.org/ssb#Revenue> ?sum_rev .
+ }
+?year <http://ssb.org/ssb#Date_Year> ?d_year . 
+?s_city <http://ssb.org/ssb#City_Name> ?s_cityname . 
+?c_city <http://ssb.org/ssb#City_Name> ?c_cityname . 
+
+ FILTER(((?c_cityname = "UNITEDKI1" || ?c_cityname = "UNITEDKI5") && (?s_cityname = "UNITEDKI1" || ?s_cityname = "UNITEDKI5")))
+ FILTER((?d_year >= 1992 && ?d_year <= 1997))
+}
+GROUP BY ?c_cityname ?s_cityname ?d_year 
+ORDER BY ASC(?d_year) DESC(?lo_revenue)
+
+############# SSB Q4.2;12
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT 
+ ?d_year ?s_nationname ?cat_name (SUM(?sum_profit) AS ?profit)  
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+FROM NAMED <http://view1.ssb1.org> 
+WHERE { 
+GRAPH <http://view1.ssb1.org> { 
+?mv_id <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#Observation> .
+?mv_id <http://purl.org/linked-data/cube#dataSet> <http://ssb.org/ssb-inst#dataset-aggview_1> .
+?mv_id <http://ssb.org/ssb#Part_Category> ?category .
+?mv_id <http://ssb.org/ssb#OrderDate_Month> ?month .
+?mv_id <http://ssb.org/ssb#Customer_Nation> ?c_nation .
+?mv_id <http://ssb.org/ssb#Supplier_Nation> ?s_nation .
+?mv_id <http://ssb.org/ssb#Profit> ?sum_profit .
+ }
+?year <http://ssb.org/ssb#Date_Year> ?d_year . 
+?year <http://purl.org/qb4olap/cubes#inLevel> <http://ssb.org/ssb#Year> . 
+?month <http://www.w3.org/2004/02/skos/core#broader> ?year . 
+?category <http://ssb.org/ssb#Category_Name> ?cat_name . 
+?mfgr <http://ssb.org/ssb#Manufacturer_Name> ?mnf_name . 
+?mfgr <http://purl.org/qb4olap/cubes#inLevel> <http://ssb.org/ssb#Manufacturer> . 
+?category <http://www.w3.org/2004/02/skos/core#broader> ?mfgr . 
+?s_nation <http://ssb.org/ssb#Nation_Name> ?s_nationname . 
+?s_region <http://ssb.org/ssb#Region_Name> ?s_region_name . 
+?s_region <http://purl.org/qb4olap/cubes#inLevel> <http://ssb.org/ssb#Region> . 
+?s_nation <http://www.w3.org/2004/02/skos/core#broader> ?s_region . 
+?c_region <http://ssb.org/ssb#Region_Name> ?c_region_name . 
+?c_region <http://purl.org/qb4olap/cubes#inLevel> <http://ssb.org/ssb#Region> . 
+?c_nation <http://www.w3.org/2004/02/skos/core#broader> ?c_region . 
+
+ FILTER(?c_region_name = "AMERICA")
+ FILTER(?s_region_name = "AMERICA")
+ FILTER((?mnf_name = "MFGR_1" || ?mnf_name = "MFGR_2"))
+ FILTER((?d_year = 1997 || ?d_year = 1998))
+}
+GROUP BY ?d_year ?s_nationname ?cat_name 
+ORDER BY ?d_year ?s_nationname ?cat_name
+
+

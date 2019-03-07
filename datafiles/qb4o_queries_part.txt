@@ -1,0 +1,297 @@
+######### SSB Q2.1;4
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT (SUM(?revenue) AS ?lo_revenue) ?d_year ?brandname 
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+WHERE {
+	?li a qb:Observation ;
+	   qb:dataSet ssb-inst:dataset1 ;
+	   ssb:Lineorder_OrderDate ?lo_orderdate ;
+	   ssb:Lineorder_Part ?part ;
+	   ssb:Lineorder_Supplier ?supplier  ;
+	   ssb:Lineorder_Revenue ?revenue .
+
+	?part skos:broader ?brand . 
+	?brand qb4o:inLevel ssb:Brand . 
+	?brand skos:broader ?category . 
+	?category qb4o:inLevel ssb:Category . 
+	?brand ssb:Brand_Name ?brandname .
+	?category ssb:Category_Name ?category_name .
+	?supplier skos:broader ?s_city .
+	?s_city qb4o:inLevel ssb:City .
+	?s_city skos:broader ?s_nation .
+	?s_nation qb4o:inLevel ssb:Nation .
+	?s_nation skos:broader ?s_region .
+	?s_region qb4o:inLevel ssb:Region .
+	?s_region ssb:Region_Name ?s_region_name . 
+
+	?lo_orderdate skos:broader ?month .
+	?month qb4o:inLevel ssb:Month .
+	?month skos:broader ?year .
+	?year qb4o:inLevel ssb:Year .
+	?year ssb:Date_Year ?d_year .
+	
+	FILTER(?s_region_name = 'AMERICA')
+	FILTER(?category_name = 'MFGR_12')
+}
+GROUP BY ?d_year ?brandname 
+ORDER BY ?d_year ?brandname
+		
+#########  SSB Q2.2;5
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT (SUM(?revenue) AS ?lo_revenue) ?d_year ?brandname 
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+WHERE {
+	?li a qb:Observation ;
+	   qb:dataSet ssb-inst:dataset1 ;
+	   ssb:Lineorder_OrderDate ?lo_orderdate ;
+	   ssb:Lineorder_Part ?part ;
+	   ssb:Lineorder_Supplier ?supplier  ;
+	   ssb:Lineorder_Revenue ?revenue .
+	?part skos:broader ?brand .
+	?brand qb4o:inLevel ssb:Brand . 
+	?brand ssb:Brand_Name ?brandname .
+	?supplier skos:broader ?s_city .
+	?s_city qb4o:inLevel ssb:City .
+	?s_city skos:broader ?s_nation .
+	?s_nation qb4o:inLevel ssb:Nation .
+	?s_nation skos:broader ?s_region .
+	?s_region qb4o:inLevel ssb:Region .
+	?s_region ssb:Region_Name ?s_region_name . 
+
+	?lo_orderdate skos:broader ?month .
+	?month qb4o:inLevel ssb:Month .
+	?month skos:broader ?year .
+	?year qb4o:inLevel ssb:Year .
+	?year ssb:Date_Year ?d_year .
+
+	FILTER(?brandname >= 'MFGR_2221' && ?brandname <= 'MFGR_2228')
+	FILTER(?s_region_name = 'ASIA')
+}
+GROUP BY ?d_year ?brandname 
+ORDER BY ?d_year ?brandname
+
+#########  SSB Q2.3;6
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT (SUM(?revenue) AS ?lo_revenue) ?d_year ?brandname 
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+WHERE {
+	?li a qb:Observation ;
+	   qb:dataSet ssb-inst:dataset1 ;
+	   ssb:Lineorder_OrderDate ?lo_orderdate ;
+	   ssb:Lineorder_Part ?part ;
+	   ssb:Lineorder_Supplier ?supplier  ;
+	   ssb:Lineorder_Revenue ?revenue .
+
+	?part skos:broader ?brand .
+	?brand qb4o:inLevel ssb:Brand . 
+	?brand ssb:Brand_Name ?brandname .
+	?supplier skos:broader ?s_city .
+	?s_city qb4o:inLevel ssb:City .
+	?s_city skos:broader ?s_nation .
+	?s_nation qb4o:inLevel ssb:Nation .
+	?s_nation skos:broader ?s_region .
+	?s_region qb4o:inLevel ssb:Region .
+	?s_region ssb:Region_Name ?s_region_name . 
+
+	?lo_orderdate skos:broader ?month .
+	?month qb4o:inLevel ssb:Month .
+	?month skos:broader ?year .
+	?year qb4o:inLevel ssb:Year .
+	?year ssb:Date_Year ?d_year .
+
+	FILTER (?brandname = 'MFGR_2239')
+	FILTER(?s_region_name = 'EUROPE')
+}
+GROUP BY ?d_year ?brandname 
+ORDER BY ?d_year ?brandname
+		
+######### SSB Q3.1;7
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT  ?c_nationname ?s_nationname ?d_year (SUM(?revenue) AS ?lo_revenue) 
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+WHERE {
+	?li a qb:Observation ;
+	   qb:dataSet ssb-inst:dataset1 ;
+	   ssb:Lineorder_OrderDate ?lo_orderdate ;
+	   ssb:Lineorder_Customer ?customer ;
+	   ssb:Lineorder_Supplier ?supplier  ;
+	   ssb:Lineorder_Revenue ?revenue .
+
+	?customer skos:broader ?c_city .
+	?c_city qb4o:inLevel ssb:City .
+	?c_city skos:broader ?c_nation .
+	?c_nation qb4o:inLevel ssb:Nation .
+	?c_nation ssb:Nation_Name ?c_nationname .
+	?c_nation skos:broader ?c_region .
+	?c_region qb4o:inLevel ssb:Region .
+	?c_region ssb:Region_Name ?c_region_name .
+	?supplier skos:broader ?s_city .
+	?s_city qb4o:inLevel ssb:City .
+	?s_city skos:broader ?s_nation .
+	?s_nation qb4o:inLevel ssb:Nation .
+	?s_nation skos:broader ?s_region .
+	?s_region qb4o:inLevel ssb:Region .
+	?s_nation ssb:Nation_Name ?s_nationname .
+	?s_region ssb:Region_Name ?s_region_name .
+
+	?lo_orderdate skos:broader ?month .
+	?month qb4o:inLevel ssb:Month .
+	?month skos:broader ?year .
+	?year qb4o:inLevel ssb:Year .
+	?year ssb:Date_Year ?d_year .
+	
+	FILTER(?d_year >= 1992 && ?d_year <= 1997)
+	FILTER(?s_region_name = 'ASIA')
+	FILTER(?c_region_name = 'ASIA')
+}
+GROUP BY ?c_nationname ?s_nationname ?d_year 
+ORDER BY ASC(?d_year) DESC(?lo_revenue)
+	
+########### SSB Q3.3;9
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT ?c_cityname ?s_cityname ?d_year (SUM(?revenue) AS ?lo_revenue) 
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+WHERE {
+	?li a qb:Observation ;
+	   qb:dataSet ssb-inst:dataset1 ;
+	   ssb:Lineorder_OrderDate ?lo_orderdate ;
+	   ssb:Lineorder_Customer ?customer ;
+	   ssb:Lineorder_Supplier ?supplier  ;
+	   ssb:Lineorder_Revenue ?revenue .
+	?customer skos:broader ?c_city .
+	?c_city qb4o:inLevel ssb:City .
+	?c_city ssb:City_Name ?c_cityname .
+	?supplier skos:broader ?s_city .
+	?s_city qb4o:inLevel ssb:City .
+	?s_city ssb:City_Name ?s_cityname . 
+
+	?lo_orderdate skos:broader ?month .
+	?month qb4o:inLevel ssb:Month .
+	?month skos:broader ?year .
+	?year qb4o:inLevel ssb:Year .
+	?year ssb:Date_Year ?d_year .
+
+	FILTER(?d_year >= 1992 && ?d_year <= 1997)
+	FILTER((?c_cityname='UNITEDKI1' || ?c_cityname='UNITEDKI5') && (?s_cityname='UNITEDKI1' || ?s_cityname='UNITEDKI5'))
+}
+GROUP BY ?c_cityname ?s_cityname ?d_year 
+ORDER BY ASC(?d_year) DESC(?lo_revenue)
+		
+############# SSB Q4.2;12
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#> 
+prefix skos: <http://www.w3.org/2004/02/skos/core#> 
+prefix qb4o: <http://purl.org/qb4olap/cubes#> 
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+
+SELECT ?d_year ?s_nationname ?cat_name (SUM(?lo_revenue - ?lo_supplycost) AS ?profit) 
+FROM <http://cust.ssb1.org>
+FROM <http://date.ssb1.org>
+FROM <http://geo.ssb1.org>
+FROM <http://lo.ssb1.org>
+FROM <http://part.ssb1.org>
+FROM <http://sup.ssb1.org>
+WHERE {
+	?li a qb:Observation ;
+	   qb:dataSet ssb-inst:dataset1 ;
+	   ssb:Lineorder_OrderDate ?lo_orderdate ;
+	   ssb:Lineorder_Customer ?customer ;
+	   ssb:Lineorder_Part ?part ;
+	   ssb:Lineorder_Supplier ?supplier  ;
+	   ssb:Lineorder_Revenue ?lo_revenue ;
+	   ssb:Lineorder_SupplyCost ?lo_supplycost .
+
+	?customer skos:broader ?c_city .
+	?c_city qb4o:inLevel ssb:City .
+	?c_city skos:broader ?c_nation .
+	?c_nation qb4o:inLevel ssb:Nation .
+	?c_nation skos:broader ?c_region .
+	?c_region qb4o:inLevel ssb:Region .
+	?c_region ssb:Region_Name ?c_region_name .
+	?supplier skos:broader ?s_city .
+	?s_city qb4o:inLevel ssb:City .
+	?s_city skos:broader ?s_nation .
+	?s_nation qb4o:inLevel ssb:Nation .
+	?s_nation skos:broader ?s_region .
+	?s_region qb4o:inLevel ssb:Region .
+	?s_region ssb:Region_Name ?s_region_name .
+	?s_nation ssb:Nation_Name ?s_nationname .
+	?part skos:broader ?brand . 
+	?brand qb4o:inLevel ssb:Brand . 
+	?brand skos:broader ?category . 
+	?category qb4o:inLevel ssb:Category . 
+	?category skos:broader ?mfgr . 
+	?mfgr qb4o:inLevel ssb:Manufacturer .  
+	?mfgr ssb:Manufacturer_Name ?mnf_name .
+	?category ssb:Category_Name ?cat_name .
+
+	?lo_orderdate skos:broader ?month .
+	?month qb4o:inLevel ssb:Month .
+	?month skos:broader ?year .
+	?year qb4o:inLevel ssb:Year .
+	?year ssb:Date_Year ?d_year .
+
+	FILTER(?d_year = 1997 || ?d_year = 1998)
+	FILTER(?mnf_name = 'MFGR_1' || ?mnf_name = 'MFGR_2')
+	FILTER(?s_region_name = 'AMERICA')
+	FILTER(?c_region_name = 'AMERICA')	
+}
+GROUP BY ?d_year ?s_nationname ?cat_name 
+ORDER BY ?d_year ?s_nationname ?cat_name
+

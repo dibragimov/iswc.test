@@ -1,0 +1,324 @@
+#### MV1;1;1227041;http://view1.ssb1_qb4o.org
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix qb4o: <http://purl.org/qb4olap/cubes#>
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+CONSTRUCT { ?mv_id a qb:Observation ; 
+	qb:dataSet ssb-inst:dataset-aggview_1 ; 
+	ssb:Part_Category ?mv_category ; 
+	ssb:OrderDate_Month ?mv_month ; 
+	ssb:Customer_Nation ?mv_c_nation ; 
+	ssb:Supplier_Nation ?mv_s_nation ; 
+	ssb:RevenueCount ?c_revenue ; 
+	ssb:PossibleRevenue ?poss_revenue ; 
+	ssb:Revenue ?sum_rev ; 
+	ssb:Profit ?sum_profit . } 
+WHERE { 
+	SELECT ?mv_id ?mv_category ?mv_c_nation ?mv_s_nation ?mv_month (SUM(?mv_revenue) AS ?sum_rev) 
+		(COUNT(?mv_revenue) AS ?c_revenue) (SUM(?mv_revenue - ?mv_supplycost) AS ?sum_profit) 
+		(SUM(?mv_extendedprice * ?mv_discount) AS ?poss_revenue) 
+	WHERE { 
+		?li a qb:Observation ; 
+			qb:dataSet ssb-inst:dataset1 ; 
+			ssb:Lineorder_Part ?mv_part ; 
+			ssb:Lineorder_OrderDate ?mv_lo_orderdate ; 
+			ssb:Lineorder_Customer ?mv_customer ; 
+			ssb:Lineorder_Supplier ?mv_supplier  ; 
+			ssb:Lineorder_Revenue ?mv_revenue ; 
+			ssb:Lineorder_SupplyCost ?mv_supplycost ; 
+			ssb:Lineorder_ExtendedPrice ?mv_extendedprice ; 
+			ssb:Lineorder_Discount ?mv_discount . 
+		?mv_customer skos:broader ?mv_c_city . 
+		?mv_c_city qb4o:inLevel ssb:City . 
+		?mv_c_city skos:broader ?mv_c_nation .
+		?mv_c_nation qb4o:inLevel ssb:Nation .
+		?mv_supplier skos:broader ?mv_s_city . 
+		?mv_s_city qb4o:inLevel ssb:City . 
+		?mv_s_city skos:broader ?mv_s_nation .
+		?mv_s_nation qb4o:inLevel ssb:Nation .
+		?mv_part skos:broader ?mv_brand . 
+		?mv_brand qb4o:inLevel ssb:Brand . 
+		?mv_brand skos:broader ?mv_category . 
+		?mv_category qb4o:inLevel ssb:Category . 
+		?mv_lo_orderdate skos:broader ?mv_month . 
+		?mv_month qb4o:inLevel ssb:Month . 
+		BIND(IRI(CONCAT('http://ssb.org/ssb-inst#', STRAFTER(str(?mv_c_nation), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_s_nation), 'http://ssb.org/ssb-inst#'), STRAFTER(str(?mv_month), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_category), 'http://ssb.org/ssb-inst#'))) AS ?mv_id) . 
+	} 
+	GROUP BY ?mv_id ?mv_category ?mv_c_nation ?mv_s_nation ?mv_month 
+}
+#### MV2;2;1955376;http://view2.ssb1_qb4o.org
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix qb4o: <http://purl.org/qb4olap/cubes#>
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+CONSTRUCT { ?mv_id a qb:Observation ; 
+	qb:dataSet ssb-inst:dataset-aggview_2 ; 
+	ssb:Part_Manufacturer ?mv_mfgr ; 
+	ssb:OrderDate_Year ?mv_year ; 
+	ssb:Customer_City ?mv_c_city ; 
+	ssb:Supplier_City ?mv_s_city ; 
+	ssb:RevenueCount ?c_revenue ; 
+	ssb:PossibleRevenue ?poss_revenue ; 
+	ssb:Revenue ?sum_rev ; 
+	ssb:Profit ?sum_profit . } 
+WHERE { 
+	SELECT ?mv_id ?mv_mfgr ?mv_c_city ?mv_s_city ?mv_year (SUM(?mv_revenue) AS ?sum_rev) 
+		(COUNT(?mv_revenue) AS ?c_revenue) (SUM(?mv_revenue - ?mv_supplycost) AS ?sum_profit) 
+		(SUM(?mv_extendedprice * ?mv_discount) AS ?poss_revenue) 
+	WHERE { 
+		?li a qb:Observation ; 
+			qb:dataSet ssb-inst:dataset1 ; 
+			ssb:Lineorder_Part ?mv_part ; 
+			ssb:Lineorder_OrderDate ?mv_lo_orderdate ; 
+			ssb:Lineorder_Customer ?mv_customer ; 
+			ssb:Lineorder_Supplier ?mv_supplier  ; 
+			ssb:Lineorder_Revenue ?mv_revenue ; 
+			ssb:Lineorder_SupplyCost ?mv_supplycost ; 
+			ssb:Lineorder_ExtendedPrice ?mv_extendedprice ; 
+			ssb:Lineorder_Discount ?mv_discount . 
+		?mv_customer skos:broader ?mv_c_city . 
+		?mv_c_city qb4o:inLevel ssb:City . 
+		?mv_supplier skos:broader ?mv_s_city . 
+		?mv_s_city qb4o:inLevel ssb:City . 
+		?mv_part skos:broader ?mv_brand . 
+		?mv_brand qb4o:inLevel ssb:Brand . 
+		?mv_brand skos:broader ?mv_category . 
+		?mv_category qb4o:inLevel ssb:Category . 
+		?mv_category skos:broader ?mv_mfgr . 
+		?mv_mfgr qb4o:inLevel ssb:Manufacturer . 
+		?mv_lo_orderdate skos:broader ?mv_month . 
+		?mv_month qb4o:inLevel ssb:Month . 
+		?mv_month skos:broader ?mv_year . 
+		?mv_year qb4o:inLevel ssb:Year . 
+		BIND(IRI(CONCAT('http://ssb.org/ssb-inst#', STRAFTER(str(?mv_c_city), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_s_city), 'http://ssb.org/ssb-inst#'), STRAFTER(str(?mv_year), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_mfgr), 'http://ssb.org/ssb-inst#'))) AS ?mv_id) . 
+	} 
+	GROUP BY ?mv_id ?mv_mfgr ?mv_c_city ?mv_s_city ?mv_year 
+}
+#### MV3;3;349999;http://view3.ssb1_qb4o.org
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix qb4o: <http://purl.org/qb4olap/cubes#>
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+CONSTRUCT { ?mv_id a qb:Observation ; 
+	qb:dataSet ssb-inst:dataset-aggview_3 ; 
+	ssb:Part_Manufacturer ?mv_mfgr ; 
+	ssb:OrderDate_Year ?mv_year ; 
+	ssb:Customer_Region ?mv_c_region ; 
+	ssb:Supplier_Supplier ?mv_supplier ; 
+	ssb:RevenueCount ?c_revenue ; 
+	ssb:PossibleRevenue ?poss_revenue ; 
+	ssb:Revenue ?sum_rev ; 
+	ssb:Profit ?sum_profit . } 
+WHERE { 
+	SELECT ?mv_id ?mv_mfgr ?mv_c_region ?mv_supplier ?mv_year (SUM(?mv_revenue) AS ?sum_rev) 
+		(COUNT(?mv_revenue) AS ?c_revenue) (SUM(?mv_revenue - ?mv_supplycost) AS ?sum_profit) 
+		(SUM(?mv_extendedprice * ?mv_discount) AS ?poss_revenue) 
+	WHERE { 
+		?li a qb:Observation ; 
+			qb:dataSet ssb-inst:dataset1 ; 
+			ssb:Lineorder_Part ?mv_part ; 
+			ssb:Lineorder_OrderDate ?mv_lo_orderdate ; 
+			ssb:Lineorder_Customer ?mv_customer ; 
+			ssb:Lineorder_Supplier ?mv_supplier  ; 
+			ssb:Lineorder_Revenue ?mv_revenue ; 
+			ssb:Lineorder_SupplyCost ?mv_supplycost ; 
+			ssb:Lineorder_ExtendedPrice ?mv_extendedprice ; 
+			ssb:Lineorder_Discount ?mv_discount . 
+		?mv_customer skos:broader ?mv_c_city . 
+		?mv_c_city qb4o:inLevel ssb:City . 
+		?mv_c_city skos:broader ?mv_c_nation .
+		?mv_c_nation qb4o:inLevel ssb:Nation .
+		?mv_c_nation skos:broader ?mv_c_region .
+		?mv_c_region qb4o:inLevel ssb:Region .
+		?mv_part skos:broader ?mv_brand . 
+		?mv_brand qb4o:inLevel ssb:Brand . 
+		?mv_brand skos:broader ?mv_category . 
+		?mv_category qb4o:inLevel ssb:Category . 
+		?mv_category skos:broader ?mv_mfgr . 
+		?mv_mfgr qb4o:inLevel ssb:Manufacturer . 
+		?mv_lo_orderdate skos:broader ?mv_month . 
+		?mv_month qb4o:inLevel ssb:Month . 
+		?mv_month skos:broader ?mv_year . 
+		?mv_year qb4o:inLevel ssb:Year . 
+		BIND(IRI(CONCAT('http://ssb.org/ssb-inst#', STRAFTER(str(?mv_c_region), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_supplier), 'http://ssb.org/ssb-inst#'), STRAFTER(str(?mv_year), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_mfgr), 'http://ssb.org/ssb-inst#'))) AS ?mv_id) . 
+	} 
+	GROUP BY ?mv_id ?mv_mfgr ?mv_c_region ?mv_supplier ?mv_year 
+}
+#### MV4;4;872418;http://view4.ssb1_qb4o.org
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix qb4o: <http://purl.org/qb4olap/cubes#>
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+CONSTRUCT { ?mv_id a qb:Observation ; 
+	qb:dataSet ssb-inst:dataset-aggview_4 ; 
+	ssb:Part_Brand ?mv_brand ; 
+	ssb:OrderDate_Year ?mv_year ; 
+	ssb:Customer_Nation ?mv_c_nation ; 
+	ssb:Supplier_Region ?mv_s_region ; 
+	ssb:RevenueCount ?c_revenue ; 
+	ssb:PossibleRevenue ?poss_revenue ; 
+	ssb:Revenue ?sum_rev ; 
+	ssb:Profit ?sum_profit . } 
+WHERE { 
+	SELECT ?mv_id ?mv_brand ?mv_c_nation ?mv_s_region ?mv_year (SUM(?mv_revenue) AS ?sum_rev) 
+		(COUNT(?mv_revenue) AS ?c_revenue) (SUM(?mv_revenue - ?mv_supplycost) AS ?sum_profit) 
+		(SUM(?mv_extendedprice * ?mv_discount) AS ?poss_revenue) 
+	WHERE { 
+		?li a qb:Observation ; 
+			qb:dataSet ssb-inst:dataset1 ; 
+			ssb:Lineorder_Part ?mv_part ; 
+			ssb:Lineorder_OrderDate ?mv_lo_orderdate ; 
+			ssb:Lineorder_Customer ?mv_customer ; 
+			ssb:Lineorder_Supplier ?mv_supplier  ; 
+			ssb:Lineorder_Revenue ?mv_revenue ; 
+			ssb:Lineorder_SupplyCost ?mv_supplycost ; 
+			ssb:Lineorder_ExtendedPrice ?mv_extendedprice ; 
+			ssb:Lineorder_Discount ?mv_discount . 
+		?mv_supplier skos:broader ?mv_s_city . 
+		?mv_s_city qb4o:inLevel ssb:City . 
+		?mv_s_city skos:broader ?mv_s_nation .
+		?mv_s_nation qb4o:inLevel ssb:Nation .
+		?mv_s_nation skos:broader ?mv_s_region .
+		?mv_s_region qb4o:inLevel ssb:Region .
+		?mv_customer skos:broader ?mv_c_city . 
+		?mv_c_city qb4o:inLevel ssb:City . 
+		?mv_c_city skos:broader ?mv_c_nation .
+		?mv_c_nation qb4o:inLevel ssb:Nation .
+		?mv_part skos:broader ?mv_brand . 
+		?mv_brand qb4o:inLevel ssb:Brand . 
+		?mv_lo_orderdate skos:broader ?mv_month . 
+		?mv_month qb4o:inLevel ssb:Month . 
+		?mv_month skos:broader ?mv_year . 
+		?mv_year qb4o:inLevel ssb:Year . 
+		BIND(IRI(CONCAT('http://ssb.org/ssb-inst#', STRAFTER(str(?mv_c_nation), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_s_region), 'http://ssb.org/ssb-inst#'), STRAFTER(str(?mv_year), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_brand), 'http://ssb.org/ssb-inst#'))) AS ?mv_id) . 
+	} 
+	GROUP BY ?mv_id ?mv_brand ?mv_c_nation ?mv_s_region ?mv_year 
+}
+
+
+#### MV5;5;1465250;http://view5.ssb1_qb4o.org
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix qb4o: <http://purl.org/qb4olap/cubes#>
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+CONSTRUCT { ?mv_id a qb:Observation ; 
+	qb:dataSet ssb-inst:dataset-aggview_4 ; 
+	ssb:Part_Manufacturer ?mv_mfgr ; 
+	ssb:OrderDate_Date ?mv_lo_orderdate ; 
+	ssb:Customer_Nation ?mv_c_nation ; 
+	ssb:Supplier_Region ?mv_s_region ; 
+	ssb:RevenueCount ?c_revenue ; 
+	ssb:PossibleRevenue ?poss_revenue ; 
+	ssb:Revenue ?sum_rev ; 
+	ssb:Profit ?sum_profit . } 
+WHERE { 
+	SELECT ?mv_id ?mv_mfgr ?mv_c_nation ?mv_s_region ?mv_lo_orderdate (SUM(?mv_revenue) AS ?sum_rev) 
+		(COUNT(?mv_revenue) AS ?c_revenue) (SUM(?mv_revenue - ?mv_supplycost) AS ?sum_profit) 
+		(SUM(?mv_extendedprice * ?mv_discount) AS ?poss_revenue) 
+	WHERE { 
+		?li a qb:Observation ; 
+			qb:dataSet ssb-inst:dataset1 ; 
+			ssb:Lineorder_Part ?mv_part ; 
+			ssb:Lineorder_OrderDate ?mv_lo_orderdate ; 
+			ssb:Lineorder_Customer ?mv_customer ; 
+			ssb:Lineorder_Supplier ?mv_supplier  ; 
+			ssb:Lineorder_Revenue ?mv_revenue ; 
+			ssb:Lineorder_SupplyCost ?mv_supplycost ; 
+			ssb:Lineorder_ExtendedPrice ?mv_extendedprice ; 
+			ssb:Lineorder_Discount ?mv_discount . 
+		?mv_supplier skos:broader ?mv_s_city . 
+		?mv_s_city qb4o:inLevel ssb:City . 
+		?mv_s_city skos:broader ?mv_s_nation .
+		?mv_s_nation qb4o:inLevel ssb:Nation .
+		?mv_s_nation skos:broader ?mv_s_region .
+		?mv_s_region qb4o:inLevel ssb:Region .
+		?mv_customer skos:broader ?mv_c_city . 
+		?mv_c_city qb4o:inLevel ssb:City . 
+		?mv_c_city skos:broader ?mv_c_nation .
+		?mv_c_nation qb4o:inLevel ssb:Nation .
+		?mv_part skos:broader ?mv_brand . 
+		?mv_brand qb4o:inLevel ssb:Brand . 
+		?mv_brand skos:broader ?mv_category . 
+		?mv_category qb4o:inLevel ssb:Category . 
+		?mv_category skos:broader ?mv_mfgr . 
+		?mv_mfgr qb4o:inLevel ssb:Manufacturer .
+		BIND(IRI(CONCAT('http://ssb.org/ssb-inst#', STRAFTER(str(?mv_c_nation), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_s_region), 'http://ssb.org/ssb-inst#'), STRAFTER(str(?mv_lo_orderdate), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_mfgr), 'http://ssb.org/ssb-inst#'))) AS ?mv_id) . 
+	} 
+	GROUP BY ?mv_id ?mv_mfgr ?mv_c_nation ?mv_s_region ?mv_lo_orderdate 
+}
+
+
+#### MV6;6;218750;http://view6.ssb1_qb4o.org
+prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+prefix qb: <http://purl.org/linked-data/cube#>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix qb4o: <http://purl.org/qb4olap/cubes#>
+prefix ssb: <http://ssb.org/ssb#> 
+prefix ssb-inst: <http://ssb.org/ssb-inst#>
+CONSTRUCT { ?mv_id a qb:Observation ; 
+	qb:dataSet ssb-inst:dataset-aggview_6 ; 
+	ssb:Part_Category ?mv_category ; 
+	ssb:OrderDate_Year ?mv_year ; 
+	ssb:Customer_City ?mv_c_city ; 
+	ssb:Supplier_Region ?mv_s_region ; 
+	ssb:RevenueCount ?c_revenue ; 
+	ssb:PossibleRevenue ?poss_revenue ; 
+	ssb:Revenue ?sum_rev ; 
+	ssb:Profit ?sum_profit . } 
+WHERE { 
+	SELECT ?mv_id ?mv_category ?mv_c_city ?mv_s_region ?mv_year (SUM(?mv_revenue) AS ?sum_rev) 
+		(COUNT(?mv_revenue) AS ?c_revenue) (SUM(?mv_revenue - ?mv_supplycost) AS ?sum_profit) 
+		(SUM(?mv_extendedprice * ?mv_discount) AS ?poss_revenue) 
+	WHERE { 
+		?li a qb:Observation ; 
+			qb:dataSet ssb-inst:dataset1 ; 
+			ssb:Lineorder_Part ?mv_part ; 
+			ssb:Lineorder_OrderDate ?mv_lo_orderdate ; 
+			ssb:Lineorder_Customer ?mv_customer ; 
+			ssb:Lineorder_Supplier ?mv_supplier  ; 
+			ssb:Lineorder_Revenue ?mv_revenue ; 
+			ssb:Lineorder_SupplyCost ?mv_supplycost ; 
+			ssb:Lineorder_ExtendedPrice ?mv_extendedprice ; 
+			ssb:Lineorder_Discount ?mv_discount . 
+		?mv_supplier skos:broader ?mv_s_city . 
+		?mv_s_city qb4o:inLevel ssb:City . 
+		?mv_s_city skos:broader ?mv_s_nation .
+		?mv_s_nation qb4o:inLevel ssb:Nation .
+		?mv_s_nation skos:broader ?mv_s_region .
+		?mv_s_region qb4o:inLevel ssb:Region .
+		?mv_customer skos:broader ?mv_c_city . 
+		?mv_c_city qb4o:inLevel ssb:City . 
+		?mv_part skos:broader ?mv_brand . 
+		?mv_brand qb4o:inLevel ssb:Brand .
+		?mv_brand skos:broader ?mv_category . 
+		?mv_category qb4o:inLevel ssb:Category . 		
+		?mv_lo_orderdate skos:broader ?mv_month . 
+		?mv_month qb4o:inLevel ssb:Month . 
+		?mv_month skos:broader ?mv_year . 
+		?mv_year qb4o:inLevel ssb:Year . 
+		BIND(IRI(CONCAT('http://ssb.org/ssb-inst#', STRAFTER(str(?mv_c_city), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_s_region), 'http://ssb.org/ssb-inst#'), STRAFTER(str(?mv_year), 'http://ssb.org/ssb-inst#'), 
+			STRAFTER(str(?mv_category), 'http://ssb.org/ssb-inst#'))) AS ?mv_id) . 
+	} 
+	GROUP BY ?mv_id ?mv_category ?mv_c_city ?mv_s_region ?mv_year 
+}
